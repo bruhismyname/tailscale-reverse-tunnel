@@ -4,6 +4,8 @@ SSH into a box you can't reach. Written for AI sandbox VMs (muse.ai and similar)
 
 One script, three ways in:
 
+![SSH session into the sandbox, reached through the tunnel](neofetch.png)
+
 ```
                 your VPS / sandbox
                 can dial out · can't take inbound
