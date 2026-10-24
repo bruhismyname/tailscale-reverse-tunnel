@@ -578,6 +578,10 @@ pc_forward_alive() {
   port="${first%%:*}"
   if [ "$PC_OS" = "windows" ]; then
     cmd="netstat -an | findstr LISTENING | findstr :$port"
+  elif [ "$PC_OS" = "mac" ]; then
+    # macOS: ss dan netstat -ltn tidak ada, dan netstat -an memakai titik bukan
+    # titik-dua untuk port, jadi cek lewat nc ke localhost (berhasil = forward hidup)
+    cmd="nc -z 127.0.0.1 $port && echo OPEN:$port"
   else
     cmd="(ss -ltn 2>/dev/null || netstat -ltn 2>/dev/null) | grep :$port"
   fi
